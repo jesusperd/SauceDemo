@@ -1,0 +1,2 @@
+GET https://www.mercadolibre.com.ar/menu/departments
+Accept: application/json
