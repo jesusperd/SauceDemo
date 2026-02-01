@@ -1,0 +1,5 @@
+{
+    "robot.run.args": [
+        "--outputdir", "results"
+    ]
+}

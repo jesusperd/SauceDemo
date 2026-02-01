@@ -1,0 +1,1374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.13.3 on darwin)" generated="2026-02-01T11:39:13.440722" rpa="false" schemaversion="5">
+<suite id="s1" name="Mercadolibre Test" source="/Users/jesusreyes/Desktop/Proyecto ML/Test_WebML  /tests/mercadolibre_test.robot">
+<test id="s1-t1" name="Test 1: Ruta Especifica Construccion" line="10">
+<kw name="Abrir Navegador En Mercado Libre" owner="keywords">
+<kw name="Get Chromedriver Path" owner="web_manager">
+<msg time="2026-02-01T11:39:13.833953" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2026-02-01T11:39:14.132768" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:14.201594" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:14.259427" level="INFO">Driver [/Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver] found in cache</msg>
+<msg time="2026-02-01T11:39:14.260070" level="INFO">${driver_path} = /Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver</msg>
+<var>${driver_path}</var>
+<status status="PASS" start="2026-02-01T11:39:13.833708" elapsed="0.426447"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-01T11:39:14.262333" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x104927380&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')</arg>
+<arg>sys, selenium.webdriver.chrome.service</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-01T11:39:14.260876" elapsed="0.001539"/>
+</kw>
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EVIDENCIAS_DIR}</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-02-01T11:39:14.262763" elapsed="0.000568"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:14.264524" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>${browser}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-02-01T11:39:14.263885" elapsed="1.703883"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-01T11:39:15.968635" elapsed="0.443007"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:16.412142" level="INFO">Opening url 'https://www.mercadolibre.com.ar'</msg>
+<arg>${URL_ML}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:39:16.411844" elapsed="1.190326"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_LOGO_ML}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.602771" elapsed="0.053063"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:17.678984" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.659017" elapsed="0.020089"/>
+</kw>
+<msg time="2026-02-01T11:39:17.679314" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.658214" elapsed="0.021137"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:17.680849" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.680036" elapsed="0.008975"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:39:17.679710" elapsed="0.009439"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:39:17.679575" elapsed="0.009827"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.656967" elapsed="0.032590"/>
+</kw>
+<arg>Chrome</arg>
+<doc>Configuración inicial del entorno y el driver.</doc>
+<status status="PASS" start="2026-02-01T11:39:13.832839" elapsed="3.856898"/>
+</kw>
+<kw name="Navegar Hacia Categoria Inteligente" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.691073" elapsed="0.024475"/>
+</kw>
+<kw name="Mouse Over" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:17.716148" level="INFO">Simulating Mouse Over on element 'css:a.nav-menu-categories-link'.</msg>
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.715819" elapsed="0.283059"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:18.000480" level="INFO">${xpath} = xpath://div[contains(@class, 'nav-categs')]//a[text()='Construcción']</msg>
+<var>${xpath}</var>
+<arg>${TEMPLATE_MENU_ITEM}</arg>
+<arg>REPLACE_TEXT</arg>
+<arg>${nombre_categoria}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.999849" elapsed="0.000707"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:18.000867" elapsed="0.043315"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:18.045159" level="INFO">Clicking element 'xpath://div[contains(@class, 'nav-categs')]//a[text()='Construcción']'.</msg>
+<arg>${xpath}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:18.044650" elapsed="1.529998"/>
+</kw>
+<arg>Construcción</arg>
+<doc>Acciona el menú de categorías y selecciona la opción deseada.</doc>
+<status status="PASS" start="2026-02-01T11:39:17.690629" elapsed="1.884276"/>
+</kw>
+<kw name="Hacer Clic En Enlace De Texto" owner="keywords">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:19.602357" level="INFO">${xpath} = xpath://a[contains(normalize-space(),'Baños y Sanitarios')]</msg>
+<var>${xpath}</var>
+<arg>${TEMPLATE_LINK_TEXTO}</arg>
+<arg>REPLACE_TEXT</arg>
+<arg>${texto}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:19.580332" elapsed="0.023551"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:19.610519" elapsed="0.042991"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2026-02-01T11:39:19.653736" elapsed="0.340802"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:19.995060" level="INFO">Clicking element 'xpath://a[contains(normalize-space(),'Baños y Sanitarios')]'.</msg>
+<arg>${xpath}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:19.994769" elapsed="6.469036"/>
+</kw>
+<arg>Baños y Sanitarios</arg>
+<doc>Busca y scrollea hacia un enlace basado en su contenido de texto.</doc>
+<status status="PASS" start="2026-02-01T11:39:19.579650" elapsed="6.884369"/>
+</kw>
+<kw name="Hacer Clic En Enlace De Texto" owner="keywords">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:26.465514" level="INFO">${xpath} = xpath://a[contains(normalize-space(),'Grifería para Baño')]</msg>
+<var>${xpath}</var>
+<arg>${TEMPLATE_LINK_TEXTO}</arg>
+<arg>REPLACE_TEXT</arg>
+<arg>${texto}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:26.464953" elapsed="0.000721"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:26.465983" elapsed="0.068754"/>
+</kw>
+<kw name="Scroll Element Into View" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" start="2026-02-01T11:39:26.534933" elapsed="0.338795"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:26.874372" level="INFO">Clicking element 'xpath://a[contains(normalize-space(),'Grifería para Baño')]'.</msg>
+<arg>${xpath}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:26.874009" elapsed="4.640538"/>
+</kw>
+<arg>Grifería para Baño</arg>
+<doc>Busca y scrollea hacia un enlace basado en su contenido de texto.</doc>
+<status status="PASS" start="2026-02-01T11:39:26.464487" elapsed="5.050247"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Grifería</arg>
+<arg>15s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-02-01T11:39:31.515046" elapsed="0.021317"/>
+</kw>
+<kw name="Finalizar Test Y Capturar Evidencia" owner="keywords" type="TEARDOWN">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:31.537547" level="INFO">${nombre_limpio} = Test_1:_Ruta_Especifica_Construccion</msg>
+<var>${nombre_limpio}</var>
+<arg>${TEST_NAME}</arg>
+<arg>${SPACE}</arg>
+<arg>_</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:31.537298" elapsed="0.000289"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:31.825740" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Test_1%3A_Ruta_Especifica_Construccion.png"&gt;&lt;img src="Test_1%3A_Ruta_Especifica_Construccion.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre_limpio}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-02-01T11:39:31.537750" elapsed="0.288080"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[EVIDENCIA] Captura guardada: ${nombre_limpio}.png</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:39:31.825987" elapsed="0.000409"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-01T11:39:31.826543" elapsed="0.257123"/>
+</kw>
+<doc>Cierre de sesión y guardado de captura con el nombre del test ejecutado.</doc>
+<status status="PASS" start="2026-02-01T11:39:31.536988" elapsed="0.546851"/>
+</kw>
+<doc>Valida la navegación profunda en la categoría Construcción.</doc>
+<status status="PASS" start="2026-02-01T11:39:13.831742" elapsed="18.252241"/>
+</test>
+<test id="s1-t2" name="Test 2: Navegacion Lateral (Padre-Hijo)" line="18">
+<kw name="Abrir Navegador En Mercado Libre" owner="keywords">
+<kw name="Get Chromedriver Path" owner="web_manager">
+<msg time="2026-02-01T11:39:32.086440" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2026-02-01T11:39:32.371356" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:32.438085" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:32.477288" level="INFO">Driver [/Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver] found in cache</msg>
+<msg time="2026-02-01T11:39:32.477700" level="INFO">${driver_path} = /Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver</msg>
+<var>${driver_path}</var>
+<status status="PASS" start="2026-02-01T11:39:32.085614" elapsed="0.392139"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-01T11:39:32.479039" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x104a16e90&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')</arg>
+<arg>sys, selenium.webdriver.chrome.service</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-01T11:39:32.478162" elapsed="0.000923"/>
+</kw>
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EVIDENCIAS_DIR}</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-02-01T11:39:32.479263" elapsed="0.000325"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:32.480026" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>${browser}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-02-01T11:39:32.479762" elapsed="1.353671"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-01T11:39:33.834203" elapsed="0.411898"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:34.246610" level="INFO">Opening url 'https://www.mercadolibre.com.ar'</msg>
+<arg>${URL_ML}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:39:34.246315" elapsed="1.668042"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_LOGO_ML}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:35.914572" elapsed="0.024456"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:35.968580" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:35.940060" elapsed="0.028614"/>
+</kw>
+<msg time="2026-02-01T11:39:35.968834" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:39:35.939828" elapsed="0.029041"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:35.969706" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:39:35.969251" elapsed="0.007220"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:39:35.969036" elapsed="0.008780"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:39:35.968974" elapsed="0.008930"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:39:35.939414" elapsed="0.038573"/>
+</kw>
+<arg>Chrome</arg>
+<doc>Configuración inicial del entorno y el driver.</doc>
+<status status="PASS" start="2026-02-01T11:39:32.085298" elapsed="3.892774"/>
+</kw>
+<kw name="Navegar Por Subcategoria Lateral" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:35.978696" elapsed="0.016068"/>
+</kw>
+<kw name="Mouse Over" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:35.995187" level="INFO">Simulating Mouse Over on element 'css:a.nav-menu-categories-link'.</msg>
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:35.994948" elapsed="0.287899"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:36.283350" level="INFO">${xpath_p} = xpath://div[contains(@class, 'nav-categs')]//a[text()='Tecnología']</msg>
+<var>${xpath_p}</var>
+<arg>${TEMPLATE_MENU_PADRE}</arg>
+<arg>REPLACE_PADRE</arg>
+<arg>${categoria_padre}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:36.283057" elapsed="0.000335"/>
+</kw>
+<kw name="Mouse Over" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:36.283754" level="INFO">Simulating Mouse Over on element 'xpath://div[contains(@class, 'nav-categs')]//a[text()='Tecnología']'.</msg>
+<arg>${xpath_p}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:36.283541" elapsed="0.302094"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:36.586479" level="INFO">${xpath_h} = xpath://div[contains(@class, 'nav-categs')]//a[text()='Accesorios para Celulares']</msg>
+<var>${xpath_h}</var>
+<arg>${TEMPLATE_MENU_HIJO}</arg>
+<arg>REPLACE_HIJO</arg>
+<arg>${subcategoria_hijo}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:36.585927" elapsed="0.000617"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath_h}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:36.586791" elapsed="0.020274"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:36.607543" level="INFO">Clicking element 'xpath://div[contains(@class, 'nav-categs')]//a[text()='Accesorios para Celulares']'.</msg>
+<arg>${xpath_h}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:36.607277" elapsed="6.882408"/>
+</kw>
+<arg>Tecnología</arg>
+<arg>Accesorios para Celulares</arg>
+<doc>Navegación jerárquica (Hover sobre padre -&gt; Clic en hijo).</doc>
+<status status="PASS" start="2026-02-01T11:39:35.978384" elapsed="7.511492"/>
+</kw>
+<kw name="Finalizar Test Y Capturar Evidencia" owner="keywords" type="TEARDOWN">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:43.490865" level="INFO">${nombre_limpio} = Test_2:_Navegacion_Lateral_(Padre-Hijo)</msg>
+<var>${nombre_limpio}</var>
+<arg>${TEST_NAME}</arg>
+<arg>${SPACE}</arg>
+<arg>_</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:43.490631" elapsed="0.000272"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:43.808613" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Test_2%3A_Navegacion_Lateral_%28Padre-Hijo%29.png"&gt;&lt;img src="Test_2%3A_Navegacion_Lateral_%28Padre-Hijo%29.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre_limpio}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-02-01T11:39:43.491058" elapsed="0.317667"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[EVIDENCIA] Captura guardada: ${nombre_limpio}.png</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:39:43.808890" elapsed="0.000239"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-01T11:39:43.809258" elapsed="0.192260"/>
+</kw>
+<doc>Cierre de sesión y guardado de captura con el nombre del test ejecutado.</doc>
+<status status="PASS" start="2026-02-01T11:39:43.490314" elapsed="0.511322"/>
+</kw>
+<doc>Valida el menú desplegable de categorías (Hover).</doc>
+<status status="PASS" start="2026-02-01T11:39:32.084582" elapsed="11.917169"/>
+</test>
+<test id="s1-t3" name="Test 3: Ofertas del Dia" line="23">
+<kw name="Abrir Navegador En Mercado Libre" owner="keywords">
+<kw name="Get Chromedriver Path" owner="web_manager">
+<msg time="2026-02-01T11:39:44.003539" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2026-02-01T11:39:44.281945" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:44.330303" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:44.365545" level="INFO">Driver [/Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver] found in cache</msg>
+<msg time="2026-02-01T11:39:44.365917" level="INFO">${driver_path} = /Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver</msg>
+<var>${driver_path}</var>
+<status status="PASS" start="2026-02-01T11:39:44.003085" elapsed="0.362882"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-01T11:39:44.366965" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x104a17b10&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')</arg>
+<arg>sys, selenium.webdriver.chrome.service</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-01T11:39:44.366331" elapsed="0.000674"/>
+</kw>
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EVIDENCIAS_DIR}</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-02-01T11:39:44.367178" elapsed="0.000281"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:44.367844" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>${browser}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-02-01T11:39:44.367598" elapsed="1.343023"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-01T11:39:45.711378" elapsed="0.429032"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:46.140879" level="INFO">Opening url 'https://www.mercadolibre.com.ar'</msg>
+<arg>${URL_ML}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:39:46.140607" elapsed="1.706495"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_LOGO_ML}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.847335" elapsed="0.023994"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:47.888913" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.872332" elapsed="0.032791"/>
+</kw>
+<msg time="2026-02-01T11:39:47.905326" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.872124" elapsed="0.033243"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:47.906215" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.905735" elapsed="0.007934"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:39:47.905523" elapsed="0.008232"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:39:47.905479" elapsed="0.008351"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.871706" elapsed="0.042198"/>
+</kw>
+<arg>Chrome</arg>
+<doc>Configuración inicial del entorno y el driver.</doc>
+<status status="PASS" start="2026-02-01T11:39:44.002586" elapsed="3.911403"/>
+</kw>
+<kw name="Ejecutar Flujo Ofertas Del Dia" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${XPATH_NAV_OFERTAS}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.914581" elapsed="0.017571"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:47.932590" level="INFO">Clicking element 'xpath://ul[@class='nav-menu-list']//a[text()='Ofertas']'.</msg>
+<arg>${XPATH_NAV_OFERTAS}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.932350" elapsed="1.633856"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Ofertas</arg>
+<arg>15s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-02-01T11:39:49.566791" elapsed="0.048487"/>
+</kw>
+<doc>Acceso y validación de la landing de ofertas.</doc>
+<status status="PASS" start="2026-02-01T11:39:47.914293" elapsed="1.701108"/>
+</kw>
+<kw name="Finalizar Test Y Capturar Evidencia" owner="keywords" type="TEARDOWN">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:39:49.616359" level="INFO">${nombre_limpio} = Test_3:_Ofertas_del_Dia</msg>
+<var>${nombre_limpio}</var>
+<arg>${TEST_NAME}</arg>
+<arg>${SPACE}</arg>
+<arg>_</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:39:49.616090" elapsed="0.000309"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:49.980530" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Test_3%3A_Ofertas_del_Dia.png"&gt;&lt;img src="Test_3%3A_Ofertas_del_Dia.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre_limpio}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-02-01T11:39:49.616549" elapsed="0.364094"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[EVIDENCIA] Captura guardada: ${nombre_limpio}.png</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:39:49.980821" elapsed="0.000242"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-01T11:39:49.981202" elapsed="0.172516"/>
+</kw>
+<doc>Cierre de sesión y guardado de captura con el nombre del test ejecutado.</doc>
+<status status="PASS" start="2026-02-01T11:39:49.615776" elapsed="0.538150"/>
+</kw>
+<doc>Verifica el acceso directo a la sección de Ofertas.</doc>
+<status status="PASS" start="2026-02-01T11:39:44.002084" elapsed="6.152135"/>
+</test>
+<test id="s1-t4" name="Test 4: Supermercado - Camino Carrefour" line="30">
+<kw name="Abrir Navegador En Mercado Libre" owner="keywords">
+<kw name="Get Chromedriver Path" owner="web_manager">
+<msg time="2026-02-01T11:39:50.156388" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2026-02-01T11:39:50.439287" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:50.493282" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:39:50.529983" level="INFO">Driver [/Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver] found in cache</msg>
+<msg time="2026-02-01T11:39:50.530389" level="INFO">${driver_path} = /Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver</msg>
+<var>${driver_path}</var>
+<status status="PASS" start="2026-02-01T11:39:50.156094" elapsed="0.374344"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-01T11:39:50.531446" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x104a79ba0&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')</arg>
+<arg>sys, selenium.webdriver.chrome.service</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-01T11:39:50.530806" elapsed="0.000683"/>
+</kw>
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EVIDENCIAS_DIR}</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-02-01T11:39:50.531657" elapsed="0.000301"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:50.532334" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>${browser}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-02-01T11:39:50.532104" elapsed="1.353330"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-01T11:39:51.886232" elapsed="0.439558"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:52.326379" level="INFO">Opening url 'https://www.mercadolibre.com.ar'</msg>
+<arg>${URL_ML}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:39:52.326029" elapsed="1.036674"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_LOGO_ML}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.362960" elapsed="0.023062"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:53.416712" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.387367" elapsed="0.029446"/>
+</kw>
+<msg time="2026-02-01T11:39:53.416978" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.387125" elapsed="0.029889"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:53.422265" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.421759" elapsed="0.006831"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:39:53.421522" elapsed="0.007186"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:39:53.421472" elapsed="0.007318"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.386435" elapsed="0.042437"/>
+</kw>
+<arg>Chrome</arg>
+<doc>Configuración inicial del entorno y el driver.</doc>
+<status status="PASS" start="2026-02-01T11:39:50.155707" elapsed="3.273248"/>
+</kw>
+<kw name="Ejecutar Busqueda Supermercado" owner="keywords">
+<kw name="Set Variable If" owner="BuiltIn">
+<msg time="2026-02-01T11:39:53.430080" level="INFO">${url_destino} = https://www.mercadolibre.com.ar/supermercado/carrefour</msg>
+<var>${url_destino}</var>
+<arg>'${camino}' == 'carrefour'</arg>
+<arg>${URL_CARREFOUR_LANDING}</arg>
+<arg>${URL_FULL_LANDING}</arg>
+<doc>Sets variable based on the given condition.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.429692" elapsed="0.000429"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:53.430405" level="INFO">Opening url 'https://www.mercadolibre.com.ar/supermercado/carrefour'</msg>
+<arg>${url_destino}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.430261" elapsed="1.171923"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${INPUT_BUSCADOR}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:39:54.602636" elapsed="0.067212"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:54.670498" level="INFO">Typing text 'capsulas' into text field 'id:cb1-edit'.</msg>
+<arg>${INPUT_BUSCADOR}</arg>
+<arg>${producto}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:39:54.670057" elapsed="0.357368"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:39:55.028233" level="INFO">Sending key(s) ('ENTER',) to id:cb1-edit element.</msg>
+<msg time="2026-02-01T11:39:55.337968" level="INFO">Pressing special key ENTER to element.</msg>
+<msg time="2026-02-01T11:39:55.338109" level="INFO">Releasing special key ENTER.</msg>
+<arg>${INPUT_BUSCADOR}</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2026-02-01T11:39:55.027642" elapsed="7.959766"/>
+</kw>
+<arg>carrefour</arg>
+<arg>capsulas</arg>
+<doc>Gestiona las búsquedas en las dos verticales de supermercado.</doc>
+<status status="PASS" start="2026-02-01T11:39:53.429285" elapsed="9.558265"/>
+</kw>
+<kw name="Finalizar Test Y Capturar Evidencia" owner="keywords" type="TEARDOWN">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:40:02.988798" level="INFO">${nombre_limpio} = Test_4:_Supermercado_-_Camino_Carrefour</msg>
+<var>${nombre_limpio}</var>
+<arg>${TEST_NAME}</arg>
+<arg>${SPACE}</arg>
+<arg>_</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:40:02.988533" elapsed="0.000307"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:03.642849" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Test_4%3A_Supermercado_-_Camino_Carrefour.png"&gt;&lt;img src="Test_4%3A_Supermercado_-_Camino_Carrefour.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre_limpio}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-02-01T11:40:02.989006" elapsed="0.653957"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[EVIDENCIA] Captura guardada: ${nombre_limpio}.png</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:40:03.643151" elapsed="0.000274"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-01T11:40:03.643569" elapsed="0.232287"/>
+</kw>
+<doc>Cierre de sesión y guardado de captura con el nombre del test ejecutado.</doc>
+<status status="PASS" start="2026-02-01T11:40:02.988177" elapsed="0.887796"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:39:50.154874" elapsed="13.721216"/>
+</test>
+<test id="s1-t5" name="Test 4.1: Supermercado - Camino Full Super" line="34">
+<kw name="Abrir Navegador En Mercado Libre" owner="keywords">
+<kw name="Get Chromedriver Path" owner="web_manager">
+<msg time="2026-02-01T11:40:03.877535" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2026-02-01T11:40:04.156209" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:40:04.613476" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:40:04.648905" level="INFO">Driver [/Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver] found in cache</msg>
+<msg time="2026-02-01T11:40:04.649320" level="INFO">${driver_path} = /Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver</msg>
+<var>${driver_path}</var>
+<status status="PASS" start="2026-02-01T11:40:03.877251" elapsed="0.772122"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-01T11:40:04.650435" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x104957e10&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')</arg>
+<arg>sys, selenium.webdriver.chrome.service</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-01T11:40:04.649764" elapsed="0.000714"/>
+</kw>
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EVIDENCIAS_DIR}</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-02-01T11:40:04.650651" elapsed="0.000303"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:04.651344" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>${browser}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-02-01T11:40:04.651105" elapsed="1.324969"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-01T11:40:05.976894" elapsed="0.408617"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:06.386061" level="INFO">Opening url 'https://www.mercadolibre.com.ar'</msg>
+<arg>${URL_ML}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:40:06.385716" elapsed="1.662002"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_LOGO_ML}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.047926" elapsed="0.025777"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:08.101562" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.074817" elapsed="0.029744"/>
+</kw>
+<msg time="2026-02-01T11:40:08.104757" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.074577" elapsed="0.030220"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:08.105644" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.105169" elapsed="0.007274"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:40:08.104953" elapsed="0.007578"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:40:08.104911" elapsed="0.007691"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.074102" elapsed="0.038573"/>
+</kw>
+<arg>Chrome</arg>
+<doc>Configuración inicial del entorno y el driver.</doc>
+<status status="PASS" start="2026-02-01T11:40:03.876960" elapsed="4.235800"/>
+</kw>
+<kw name="Ejecutar Busqueda Supermercado" owner="keywords">
+<kw name="Set Variable If" owner="BuiltIn">
+<msg time="2026-02-01T11:40:08.113751" level="INFO">${url_destino} = https://www.mercadolibre.com.ar/supermercado/market</msg>
+<var>${url_destino}</var>
+<arg>'${camino}' == 'carrefour'</arg>
+<arg>${URL_CARREFOUR_LANDING}</arg>
+<arg>${URL_FULL_LANDING}</arg>
+<doc>Sets variable based on the given condition.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.113430" elapsed="0.000360"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:08.114069" level="INFO">Opening url 'https://www.mercadolibre.com.ar/supermercado/market'</msg>
+<arg>${url_destino}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.113924" elapsed="1.523545"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${INPUT_BUSCADOR}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:09.637814" elapsed="0.138636"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:09.776921" level="INFO">Typing text 'capsulas' into text field 'id:cb1-edit'.</msg>
+<arg>${INPUT_BUSCADOR}</arg>
+<arg>${producto}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:40:09.776641" elapsed="0.774003"/>
+</kw>
+<kw name="Press Keys" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:10.551297" level="INFO">Sending key(s) ('ENTER',) to id:cb1-edit element.</msg>
+<msg time="2026-02-01T11:40:10.837560" level="INFO">Pressing special key ENTER to element.</msg>
+<msg time="2026-02-01T11:40:10.837667" level="INFO">Releasing special key ENTER.</msg>
+<arg>${INPUT_BUSCADOR}</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<status status="PASS" start="2026-02-01T11:40:10.550852" elapsed="1.792307"/>
+</kw>
+<arg>full super</arg>
+<arg>capsulas</arg>
+<doc>Gestiona las búsquedas en las dos verticales de supermercado.</doc>
+<status status="PASS" start="2026-02-01T11:40:08.113077" elapsed="4.230209"/>
+</kw>
+<kw name="Finalizar Test Y Capturar Evidencia" owner="keywords" type="TEARDOWN">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:40:12.344205" level="INFO">${nombre_limpio} = Test_4.1:_Supermercado_-_Camino_Full_Super</msg>
+<var>${nombre_limpio}</var>
+<arg>${TEST_NAME}</arg>
+<arg>${SPACE}</arg>
+<arg>_</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:40:12.343962" elapsed="0.000281"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:12.911004" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Test_4.1%3A_Supermercado_-_Camino_Full_Super.png"&gt;&lt;img src="Test_4.1%3A_Supermercado_-_Camino_Full_Super.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre_limpio}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-02-01T11:40:12.344394" elapsed="0.566734"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[EVIDENCIA] Captura guardada: ${nombre_limpio}.png</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:40:12.911314" elapsed="0.000241"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-01T11:40:12.911686" elapsed="0.198403"/>
+</kw>
+<doc>Cierre de sesión y guardado de captura con el nombre del test ejecutado.</doc>
+<status status="PASS" start="2026-02-01T11:40:12.343648" elapsed="0.766556"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:40:03.876496" elapsed="9.233819"/>
+</test>
+<test id="s1-t6" name="Test 6: Cuantificador de categoria" line="40">
+<kw name="Abrir Navegador En Mercado Libre" owner="keywords" type="SETUP">
+<kw name="Get Chromedriver Path" owner="web_manager">
+<msg time="2026-02-01T11:40:13.111772" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2026-02-01T11:40:13.392845" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:40:13.447642" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:40:13.483036" level="INFO">Driver [/Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver] found in cache</msg>
+<msg time="2026-02-01T11:40:13.483429" level="INFO">${driver_path} = /Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver</msg>
+<var>${driver_path}</var>
+<status status="PASS" start="2026-02-01T11:40:13.111503" elapsed="0.371976"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-01T11:40:13.484531" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x1049f79b0&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')</arg>
+<arg>sys, selenium.webdriver.chrome.service</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-01T11:40:13.483873" elapsed="0.000701"/>
+</kw>
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EVIDENCIAS_DIR}</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-02-01T11:40:13.484740" elapsed="0.000303"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:13.485433" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>${browser}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-02-01T11:40:13.485192" elapsed="1.369258"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-01T11:40:14.855430" elapsed="0.425891"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:15.281829" level="INFO">Opening url 'https://www.mercadolibre.com.ar'</msg>
+<arg>${URL_ML}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:40:15.281534" elapsed="1.069573"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_LOGO_ML}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.351859" elapsed="0.023339"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:16.405574" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.376395" elapsed="0.029278"/>
+</kw>
+<msg time="2026-02-01T11:40:16.405843" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.376161" elapsed="0.029718"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:16.406775" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.406246" elapsed="0.007532"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:40:16.406033" elapsed="0.007834"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:40:16.405991" elapsed="0.007945"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.375611" elapsed="0.038402"/>
+</kw>
+<arg>Chrome</arg>
+<doc>Configuración inicial del entorno y el driver.</doc>
+<status status="PASS" start="2026-02-01T11:40:13.111192" elapsed="3.302909"/>
+</kw>
+<kw name="Cuantificador de categoria" owner="keywords">
+<kw name="Navegar Hacia Categoria Inteligente" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.415105" elapsed="0.017925"/>
+</kw>
+<kw name="Mouse Over" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:16.433471" level="INFO">Simulating Mouse Over on element 'css:a.nav-menu-categories-link'.</msg>
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.433222" elapsed="0.421403"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:40:16.855105" level="INFO">${xpath} = xpath://div[contains(@class, 'nav-categs')]//a[text()='Construcción']</msg>
+<var>${xpath}</var>
+<arg>${TEMPLATE_MENU_ITEM}</arg>
+<arg>REPLACE_TEXT</arg>
+<arg>${nombre_categoria}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.854826" elapsed="0.000316"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.855278" elapsed="0.036929"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:16.892659" level="INFO">Clicking element 'xpath://div[contains(@class, 'nav-categs')]//a[text()='Construcción']'.</msg>
+<arg>${xpath}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.892409" elapsed="1.597950"/>
+</kw>
+<arg>${categoria_nombre}</arg>
+<doc>Acciona el menú de categorías y selecciona la opción deseada.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.414802" elapsed="2.075713"/>
+</kw>
+<kw name="Set Variable If" owner="BuiltIn">
+<msg time="2026-02-01T11:40:18.491464" level="INFO">${url_especifica} = https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/</msg>
+<var>${url_especifica}</var>
+<arg>'${categoria_nombre}' == 'Construcción'</arg>
+<arg>https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/</arg>
+<doc>Sets variable based on the given condition.</doc>
+<status status="PASS" start="2026-02-01T11:40:18.490940" elapsed="0.000571"/>
+</kw>
+<kw name="Cuantificar Resultados Subcategoria" owner="keywords">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:18.492678" level="INFO">Opening url 'https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/'</msg>
+<arg>${url_subcategoria}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:40:18.492471" elapsed="6.441803"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:25.000848" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:24.935039" elapsed="0.065912"/>
+</kw>
+<msg time="2026-02-01T11:40:25.001099" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:40:24.934863" elapsed="0.066269"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:25.001850" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.001439" elapsed="0.027091"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:40:25.001246" elapsed="0.027396"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:40:25.001217" elapsed="0.027485"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:40:24.934543" elapsed="0.094274"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TXT_CANTIDAD_RESULTADOS}</arg>
+<arg>20s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.028980" elapsed="0.065423"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:25.347753" level="INFO">${valor_extraido} = 1.186 resultados</msg>
+<var>${valor_extraido}</var>
+<arg>${TXT_CANTIDAD_RESULTADOS}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.094599" elapsed="0.253223"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:40:25.353994" level="INFO">${numero_limpio} = 1.186 </msg>
+<var>${numero_limpio}</var>
+<arg>${valor_extraido}</arg>
+<arg>resultados</arg>
+<arg>${EMPTY}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.348130" elapsed="0.005923"/>
+</kw>
+<kw name="Strip String" owner="String">
+<msg time="2026-02-01T11:40:25.354554" level="INFO">${numero_limpio} = 1.186</msg>
+<var>${numero_limpio}</var>
+<arg>${numero_limpio}</arg>
+<doc>Remove leading and/or trailing whitespaces from the given string.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.354264" elapsed="0.000404"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[RESULTADO] ${nombre_subcategoria}: ${numero_limpio}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.354834" elapsed="0.000278"/>
+</kw>
+<return>
+<value>${numero_limpio}</value>
+<status status="PASS" start="2026-02-01T11:40:25.355266" elapsed="0.000240"/>
+</return>
+<arg>${url_especifica}</arg>
+<arg>${categoria_nombre}</arg>
+<doc>Motor de extracción: Obtiene el texto de cantidad y lo limpia para el reporte.</doc>
+<status status="PASS" start="2026-02-01T11:40:18.492037" elapsed="6.863666"/>
+</kw>
+<arg>Construcción</arg>
+<doc>Lógica del Test 6: Navega y prepara la extracción de totales.</doc>
+<status status="PASS" start="2026-02-01T11:40:16.414431" elapsed="8.941376"/>
+</kw>
+<kw name="Finalizar Test Y Capturar Evidencia" owner="keywords" type="TEARDOWN">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:40:25.357344" level="INFO">${nombre_limpio} = Test_6:_Cuantificador_de_categoria</msg>
+<var>${nombre_limpio}</var>
+<arg>${TEST_NAME}</arg>
+<arg>${SPACE}</arg>
+<arg>_</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.356909" elapsed="0.000489"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:25.686757" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Test_6%3A_Cuantificador_de_categoria.png"&gt;&lt;img src="Test_6%3A_Cuantificador_de_categoria.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre_limpio}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.357586" elapsed="0.329287"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[EVIDENCIA] Captura guardada: ${nombre_limpio}.png</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.687185" elapsed="0.000194"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.687487" elapsed="0.234053"/>
+</kw>
+<doc>Cierre de sesión y guardado de captura con el nombre del test ejecutado.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.356318" elapsed="0.565340"/>
+</kw>
+<doc>Extrae la cantidad total de productos en una categoría específica.</doc>
+<status status="PASS" start="2026-02-01T11:40:13.110643" elapsed="12.811126"/>
+</test>
+<test id="s1-t7" name="Test 7: Parametrizador de categoria por precio" line="45">
+<kw name="Abrir Navegador En Mercado Libre" owner="keywords" type="SETUP">
+<kw name="Get Chromedriver Path" owner="web_manager">
+<msg time="2026-02-01T11:40:25.923323" level="INFO">====== WebDriver manager ======</msg>
+<msg time="2026-02-01T11:40:26.199508" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:40:26.249856" level="INFO">Get LATEST chromedriver version for google-chrome</msg>
+<msg time="2026-02-01T11:40:26.282270" level="INFO">Driver [/Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver] found in cache</msg>
+<msg time="2026-02-01T11:40:26.282654" level="INFO">${driver_path} = /Users/jesusreyes/.wdm/drivers/chromedriver/mac64/144.0.7559.109/chromedriver-mac-x64/chromedriver</msg>
+<var>${driver_path}</var>
+<status status="PASS" start="2026-02-01T11:40:25.923073" elapsed="0.359627"/>
+</kw>
+<kw name="Evaluate" owner="BuiltIn">
+<msg time="2026-02-01T11:40:26.283700" level="INFO">${service} = &lt;selenium.webdriver.chrome.service.Service object at 0x104a21f20&gt;</msg>
+<var>${service}</var>
+<arg>sys.modules['selenium.webdriver.chrome.service'].Service(executable_path=r'${driver_path}')</arg>
+<arg>sys, selenium.webdriver.chrome.service</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="PASS" start="2026-02-01T11:40:26.283054" elapsed="0.000688"/>
+</kw>
+<kw name="Set Screenshot Directory" owner="SeleniumLibrary">
+<arg>${EVIDENCIAS_DIR}</arg>
+<doc>Sets the directory for captured screenshots.</doc>
+<status status="PASS" start="2026-02-01T11:40:26.283907" elapsed="0.000291"/>
+</kw>
+<kw name="Create Webdriver" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:26.284569" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<arg>${browser}</arg>
+<arg>service=${service}</arg>
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<status status="PASS" start="2026-02-01T11:40:26.284343" elapsed="1.347378"/>
+</kw>
+<kw name="Maximize Browser Window" owner="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" start="2026-02-01T11:40:27.632623" elapsed="0.420734"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:28.053923" level="INFO">Opening url 'https://www.mercadolibre.com.ar'</msg>
+<arg>${URL_ML}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:40:28.053556" elapsed="1.034398"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_LOGO_ML}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.088224" elapsed="0.025549"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:29.143438" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.114825" elapsed="0.028711"/>
+</kw>
+<msg time="2026-02-01T11:40:29.143696" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.114606" elapsed="0.029125"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:29.144543" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.144080" elapsed="0.006975"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:40:29.143875" elapsed="0.007264"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:40:29.143835" elapsed="0.007371"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.114178" elapsed="0.037100"/>
+</kw>
+<arg>Chrome</arg>
+<doc>Configuración inicial del entorno y el driver.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.922760" elapsed="3.228601"/>
+</kw>
+<kw name="Navegar Hacia Categoria Inteligente" owner="keywords">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.152003" elapsed="0.017765"/>
+</kw>
+<kw name="Mouse Over" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:29.170195" level="INFO">Simulating Mouse Over on element 'css:a.nav-menu-categories-link'.</msg>
+<arg>${CSS_BTN_CATEGORIAS}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.169953" elapsed="0.271662"/>
+</kw>
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:40:29.442390" level="INFO">${xpath} = xpath://div[contains(@class, 'nav-categs')]//a[text()='Construcción']</msg>
+<var>${xpath}</var>
+<arg>${TEMPLATE_MENU_ITEM}</arg>
+<arg>REPLACE_TEXT</arg>
+<arg>${nombre_categoria}</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.442023" elapsed="0.000420"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${xpath}</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.442626" elapsed="0.025782"/>
+</kw>
+<kw name="Click Element" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:29.468910" level="INFO">Clicking element 'xpath://div[contains(@class, 'nav-categs')]//a[text()='Construcción']'.</msg>
+<arg>${xpath}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.468629" elapsed="1.637333"/>
+</kw>
+<arg>Construcción</arg>
+<doc>Acciona el menú de categorías y selecciona la opción deseada.</doc>
+<status status="PASS" start="2026-02-01T11:40:29.151702" elapsed="1.954569"/>
+</kw>
+<kw name="Parametrizador de precio para categoria" owner="keywords">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:31.108221" level="INFO">Opening url 'https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/'</msg>
+<arg>https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:40:31.107918" elapsed="5.791622"/>
+</kw>
+<kw name="Eliminar Cookies Si Existen" owner="keywords">
+<kw name="Run Keyword And Return Status" owner="BuiltIn">
+<kw name="Element Should Be Visible" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:36.970523" level="INFO">Element 'css:.cookie-consent-banner-opt-out__container' is displayed.</msg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:36.900358" elapsed="0.070266"/>
+</kw>
+<msg time="2026-02-01T11:40:36.970791" level="INFO">${presente} = True</msg>
+<var>${presente}</var>
+<arg>Element Should Be Visible</arg>
+<arg>${CSS_COOKIES_BANNER}</arg>
+<arg>5s</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<status status="PASS" start="2026-02-01T11:40:36.900168" elapsed="0.070659"/>
+</kw>
+<if>
+<branch type="IF" condition="${presente}">
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:36.971644" level="INFO">Executing JavaScript:
+if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()
+Without any arguments.</msg>
+<arg>if(document.querySelector('.cookie-consent-banner-opt-out__container')) document.querySelector('.cookie-consent-banner-opt-out__container').remove()</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:40:36.971183" elapsed="0.028261"/>
+</kw>
+<status status="PASS" start="2026-02-01T11:40:36.970946" elapsed="0.028585"/>
+</branch>
+<status status="PASS" start="2026-02-01T11:40:36.970917" elapsed="0.028674"/>
+</if>
+<doc>Limpia el banner de cookies mediante JS para evitar interrupciones.</doc>
+<status status="PASS" start="2026-02-01T11:40:36.899842" elapsed="0.099819"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Precio</arg>
+<arg>20s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2026-02-01T11:40:36.999822" elapsed="0.063513"/>
+</kw>
+<kw name="Execute Javascript" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:37.064052" level="INFO">Executing JavaScript:
+document.evaluate("//*[contains(text(),'Precio')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});
+Without any arguments.</msg>
+<arg>document.evaluate("//*[contains(text(),'Precio')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: 'smooth', block: 'center'});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<status status="PASS" start="2026-02-01T11:40:37.063532" elapsed="0.027938"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2026-02-01T11:40:39.092530" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2026-02-01T11:40:37.091679" elapsed="2.001020"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-01T11:40:39.093458" level="INFO">${url_final} = https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/_PriceRange_100ARS-50000ARS_NoIndex_True</msg>
+<var>${url_final}</var>
+<arg>https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/_PriceRange_${min_precio}ARS-${max_precio}ARS_NoIndex_True</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-01T11:40:39.093013" elapsed="0.000505"/>
+</kw>
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:39.093960" level="INFO">Opening url 'https://listado.mercadolibre.com.ar/construccion/banos-sanitarios/nuevo/_PriceRange_100ARS-50000ARS_NoIndex_True'</msg>
+<arg>${url_final}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2026-02-01T11:40:39.093730" elapsed="3.719632"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>${TXT_CANTIDAD_RESULTADOS}</arg>
+<arg>15s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2026-02-01T11:40:42.813585" elapsed="0.066290"/>
+</kw>
+<kw name="Get Text" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:42.944625" level="INFO">${total_filtrado} = 92.196 resultados</msg>
+<var>${total_filtrado}</var>
+<arg>${TXT_CANTIDAD_RESULTADOS}</arg>
+<doc>Returns the text value of the element identified by ``locator``.</doc>
+<status status="PASS" start="2026-02-01T11:40:42.880066" elapsed="0.064609"/>
+</kw>
+<kw name="Remove String" owner="String">
+<msg time="2026-02-01T11:40:42.945097" level="INFO">${solo_numero} = 92.196 </msg>
+<var>${solo_numero}</var>
+<arg>${total_filtrado}</arg>
+<arg>resultados</arg>
+<doc>Removes all ``removables`` from the given ``string``.</doc>
+<status status="PASS" start="2026-02-01T11:40:42.944880" elapsed="0.000253"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[RESULTADO FINAL] Rango $${min_precio}-$${max_precio} -&gt; Cantidad: ${solo_numero}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:40:42.945282" elapsed="0.000274"/>
+</kw>
+<arg>100</arg>
+<arg>50000</arg>
+<doc>Lógica del Test 7: Filtro por URL y reutilización del motor del Test 6.</doc>
+<status status="PASS" start="2026-02-01T11:40:31.107349" elapsed="11.838298"/>
+</kw>
+<kw name="Finalizar Test Y Capturar Evidencia" owner="keywords" type="TEARDOWN">
+<kw name="Replace String" owner="String">
+<msg time="2026-02-01T11:40:42.946488" level="INFO">${nombre_limpio} = Test_7:_Parametrizador_de_categoria_por_precio</msg>
+<var>${nombre_limpio}</var>
+<arg>${TEST_NAME}</arg>
+<arg>${SPACE}</arg>
+<arg>_</arg>
+<doc>Replaces ``search_for`` in the given ``string`` with ``replace_with``.</doc>
+<status status="PASS" start="2026-02-01T11:40:42.946254" elapsed="0.000271"/>
+</kw>
+<kw name="Capture Page Screenshot" owner="SeleniumLibrary">
+<msg time="2026-02-01T11:40:43.514826" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="Test_7%3A_Parametrizador_de_categoria_por_precio.png"&gt;&lt;img src="Test_7%3A_Parametrizador_de_categoria_por_precio.png" width="800px"&gt;&lt;/a&gt;</msg>
+<arg>${nombre_limpio}.png</arg>
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<status status="PASS" start="2026-02-01T11:40:42.946669" elapsed="0.570017"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>\n[EVIDENCIA] Captura guardada: ${nombre_limpio}.png</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T11:40:43.516854" elapsed="0.000216"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2026-02-01T11:40:43.517192" elapsed="0.275997"/>
+</kw>
+<doc>Cierre de sesión y guardado de captura con el nombre del test ejecutado.</doc>
+<status status="PASS" start="2026-02-01T11:40:42.945971" elapsed="0.847335"/>
+</kw>
+<doc>Aplica filtros de precio y reutiliza la lógica de cuantificación.</doc>
+<status status="PASS" start="2026-02-01T11:40:25.922080" elapsed="17.871337"/>
+</test>
+<status status="PASS" start="2026-02-01T11:39:13.441967" elapsed="90.352469"/>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Mercadolibre Test" id="s1" pass="7" fail="0" skip="0">Mercadolibre Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
