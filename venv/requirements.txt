@@ -1,5 +1,0 @@
-robotframework
-robotframework-seleniumlibrary
-robotframework-pythonlibcore
-webdriver-manager
-setuptools
